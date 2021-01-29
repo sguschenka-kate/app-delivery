@@ -1,51 +1,59 @@
-// import { useState, useEffect } from "react";
-// import { Loader } from "../shared/Loader";
-import { ProductItem } from "./ProductItem";
-// import * as api from "../../api/products";
+import { useState, useEffect } from "react";
+import { Loader } from "../Loader";
+import { ProductItem } from "../ProductItem";
+import { Categories } from "../Categories";
+import { Cart } from "./Cart";
+import * as api from "../../api/fetchService";
 
 import "./style.scss";
 
 function Main() {
-  // const [products, setProducts] = useState({});
-  const products = {
-    1: {id: Date.now(), type: "burger", image: "/img/burger.png", name: "Smash burger", price: 10.49, rate: 5.0, time: "30 min", added: false},
-    2: {id: Date.now(), type: "drink", image: "/img/burger.png", name: "Soda", price: 10.49, rate: 4.9, time: "15 min", added: false},
-    3: {id: Date.now(), type: "chiabata", image: "/img/burger.png", name: "Chiabata with pork", price: 10.49, rate: 4.6, time: "25 min", added: false},
+  const [products, setProducts] = useState({});
+  const [categories, setCategories] = useState({});
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData()
+    console.log(products)
+    console.log(categories)
+  }, [])
+
+  const fetchData = async () => {
+    setLoading(true);
+    await fetchCategories();
+    await fetchProducts();
+    setLoading(false);
   }
 
-  // const [isLoading, setLoading] = useState(true);
+  async function fetchProducts() {
+    const response = await api.fetchProducts();
+    setProducts(response);
+  }
 
-  // useEffect(() => {
-  //   fetchProducts()
-  // }, [])
-
-  // const fetchProducts = async () => {
-  //   setLoading(true);
-  //   const response = await api.fetchProducts();
-  //   setProducts(response);
-  //   setLoading(false);
-  // }
+  async function fetchCategories() {
+    const response = await api.fetchCategories();
+    setCategories(response);
+  }
 
   return (
     <div className="main">
-      {/* {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
+
       <div className="main__container">
-        {/* {!isLoading &&  */}
-          <ul className="product__list">
-            {Object.values(products).map((product) =>
-              <ProductItem
-              type={product.type}
-              name={product.name}
-              id={product.id}
-              image={product.image}
-              price={product.price}
-              rate={product.rate}
-              time={product.time}
-              key={product.id}
-            />
-            )}
-          </ul>
-        {/* } */}
+        {!isLoading &&
+          <div>
+            <Categories categories={categories}></Categories>
+
+            <ul className="product__list">
+              {Object.values(products).map((product) =>
+                <ProductItem
+                  product={product}
+                  key={product.id}
+                />
+              )}
+            </ul>
+          </div>
+        }
       </div>
 
 
@@ -55,4 +63,55 @@ function Main() {
 
 export {
   Main
+}
+
+
+
+
+
+
+
+
+
+import { useState, useContext, useEffect } from 'react';
+import { StoreContext } from '../store';
+
+// import { Loader } from '../components/Loader';
+import { Categories } from '../components/Categories';
+
+function HomePage() {
+  const { state, dispatch } = useContext(StoreContext);
+  // const [isLoading, setLoading] = useState(true);
+
+
+
+  return (
+    <div className="main">
+      {/* {isLoading && <Loader />} */}
+
+      <div className="main__container">
+        {isLoading && state.state.products !== null && <>
+          {state.state.products.length > 0 ?
+            <div>
+              <Categories />
+              <ul className="product__list">
+                {Object.values(state.state.products).map((product) =>
+                  <ProductItem
+                    product={product}
+                    key={product.id}
+                  />
+                )}
+              </ul>
+            </div> :
+            <p>Sorry, there are no products to order today</p>}
+        </>}
+      </div>
+
+
+    </div>
+  )
+}
+
+export {
+  HomePage
 }
