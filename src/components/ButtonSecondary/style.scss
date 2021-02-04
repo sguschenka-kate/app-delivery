@@ -1,0 +1,17 @@
+@import '../../assets/scss/mixins.scss';
+
+.btn-secondary {
+  @include make-font(12, 15);
+  font-weight: 500;
+
+  padding: 10px;
+  height: 25px;
+  border: 0.5px solid #007aff;
+  color: #000;
+  background: transparent;
+  border-radius: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

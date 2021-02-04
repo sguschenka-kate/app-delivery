@@ -1,0 +1,27 @@
+.search__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+ }
+ 
+ .search__input {
+   padding: 5px;
+   flex: 1 0;
+ 
+   border: 0.5px solid #ffca05;
+   border-radius: 7%;
+   // box-shadow: 0 12px 24px rgba(68, 68, 68, 0.1);
+ }
+ 
+ .search__button {
+   margin-left: 5px;
+ }
+
+.categories__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 30px;
+}

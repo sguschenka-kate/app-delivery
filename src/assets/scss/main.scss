@@ -1,4 +1,6 @@
-@import "./mixins";
+:root {
+  --vh: calc(100vh);
+}
 
 *,
 *::before,
@@ -20,8 +22,11 @@ body,
 
   button {
     font-family: inherit;
-    padding: 0;
-    background: transparent;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
   }
 }
 

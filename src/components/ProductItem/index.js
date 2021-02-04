@@ -1,44 +1,37 @@
-
-import { useContext } from "react";
-import { StoreContext } from "../../store";
-import * as types from "../../store/actions";
 import "./style.scss";
 
-function ProductItem({ product }) {
+function ProductItem({ product, children, className, handleRoute }) {
 
-  const { dispatch } = useContext(StoreContext);
-
-  const handleClick = () => {
-    dispatch({
-      type: types.ADD_TO_CART,
-      payload: {
-        ...product,
-        quantity: 1
-      }
-    })
+  const handleClick = ({ target }) => {
+    if (target.tagName !== 'BUTTON') {
+      handleRoute(`/product/${product.id}`);
+    } else {
+      return
+    }
   }
 
-
   return (
-    <li className="product__item">
-      <img src={product.img} className="product__image" alt={product.name} />
-      <div className="product__info">
+    <li
+      className={`product-item ${className}`}
+      onClick={handleClick}
+    >
+      <img src={product.img} className="product-item__image" alt={product.name} />
+      <div className="product-item__container">
         <h3 className="product__name">
           {product.name}
         </h3>
-        <div className="product__meta">
-          <span className="product__meta-time">{product.time} min</span>
-          <span className="product__meta-rank">
-            <img src="/img/star.svg" alt="Star" className="product__meta-rank-image" aria-hidden="true" />
-            {product.rate}
-          </span>
+        <div className="product-item__info">
+          <div className="product-item__meta">
+            <span className="product-item__meta-time">{product.time} min</span>
+            <span className="product-item__meta-rank">
+              <img src="/img/star.svg" alt="Star" className="product-item__meta-rank-image" aria-hidden="true" />
+              {product.rate}
+            </span>
+            <div className="product-item__price">&#36; {product.price}</div>
+          </div>
+          {children}
         </div>
-        <div className="product__price">&#36; {product.price}</div>
       </div>
-
-      <button className="product__btn" onClick={handleClick}>
-        BUY
-        </button>
     </li>
   )
 }

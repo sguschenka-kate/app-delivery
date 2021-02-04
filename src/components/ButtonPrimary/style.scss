@@ -1,0 +1,18 @@
+@import '../../assets/scss/mixins.scss';
+
+.btn-primary {
+  @include make-font(12, 15);
+  font-weight: 500;
+
+  padding: 10px;
+  height: 25px;
+  border: 0.5px solid #ffca05;
+  color: #007aff;
+  background: transparent;
+  border-radius: 1px;
+  box-shadow: 0px 12px 24px rgba(68, 68, 68, 0.1);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

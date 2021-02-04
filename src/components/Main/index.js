@@ -14,8 +14,6 @@ function Main() {
 
   useEffect(() => {
     fetchData()
-    console.log(products)
-    console.log(categories)
   }, [])
 
   const fetchData = async () => {

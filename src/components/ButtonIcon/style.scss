@@ -1,0 +1,12 @@
+.button-icon {
+  content: '';
+  display: block;
+  width: 29px;
+  height: 29px;
+  border-color: transparent;
+  background: url(../../images/delete.svg) center center no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

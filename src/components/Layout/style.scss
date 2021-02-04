@@ -1,4 +1,4 @@
-@import '../../assets/scss/main.scss';
+@import '../../assets/scss/mixins.scss';
 
 .layout {
   width: 100%;
@@ -12,7 +12,7 @@
 
 .header {
   border-bottom: 1px solid #f9f9f9;
-  padding: 15px 15px 8px;
+  padding: 12px 15px;
   position: sticky;
   top: 0;
 
@@ -37,6 +37,10 @@
   width: 100%;
   border-radius: 50%;
   border: 1px solid #000;
+}
+
+.logo {
+  width: 70px;
 }
 
 .layout__cart {

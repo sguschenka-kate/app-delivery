@@ -1,4 +1,4 @@
-function convert(arr) {
+function reduceToDictionary(arr) {
   return arr.reduce((acc, current) => ({
     ...acc,
     [current.id]: current
@@ -6,5 +6,5 @@ function convert(arr) {
 }
 
 export {
-  convert
+  reduceToDictionary
 }
