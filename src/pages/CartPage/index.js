@@ -44,7 +44,7 @@ function CartPage({ history }) {
 
   const moveToProductPage = path => history.push(path)
 
-  const moveToOrderPage = path => history.push(path);
+  // const moveToOrderPage = path => history.push(path);
 
   return (
     <div className="cart">

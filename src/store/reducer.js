@@ -153,15 +153,6 @@ function productsReducer(state, action) {
       }
     }
 
-    case types.SEARCH_INPUT: {
-
-      // let query = payload;
-
-      return {
-        ...state,
-      }
-    }
-
     default:
       return state
   }

@@ -28,7 +28,7 @@ function ProductPage({ match }) {
           <div className="product__rate">{currentProduct.rate}</div>
           <div className="product__time">{currentProduct.time} min</div>
           <div className="product__price">&#36; {currentProduct.price}</div>
-          <div className="product__description">{currentProduct.description}</div>
+          {/* <div className="product__description">{currentProduct.description}</div> */}
         </div>
       }
     </>

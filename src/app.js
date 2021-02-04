@@ -44,7 +44,7 @@ function App() {
           <Route exact path="/" component={CategoriesPage} />
           <Route path="/categories/:id" component={ProductsPage} />
           <Route path="/products" component={ProductsPage} />
-          <Route path="/products/:id" component={ProductPage} />
+          <Route path="/product/:id" component={ProductPage} />
           <Route path="/cart" component={CartPage} />
           <Route path="/order" component={OrderPage} />
         </Layout>

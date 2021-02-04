@@ -26,7 +26,7 @@ function ProductsPage({ history, match }) {
   const fetchData = useCallback(async () => {
     const id = match.params.id || null;
     let products = id ? await fetchService.fetchProductsByCategory(id) : await fetchService.fetchProducts();
-    console.log(products)
+
     dispatch({
       type: types.FETCH_PRODUCTS,
       payload: products,

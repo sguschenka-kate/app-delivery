@@ -1,5 +1,5 @@
 import { reduceToDictionary } from "../lib/reduceToDictionary";
-import { request } from './request';
+// import { request } from './request';
 
 async function fetchProducts() {
   const response = await fetch("http://95.217.218.239/api/product", {
@@ -39,16 +39,19 @@ async function fetchCategories() {
 }
 
 async function searchData(value) {
-  const url = request({
-    url: '/product',
-    search: value,
-  })
-  const response = await fetch(url, {
+  const query = { search: value };
+  const url = new URL('http://95.217.218.239/api/product');
+
+  for (const key in query) {
+    url.searchParams.set(key, query[key]);
+  }
+
+  const response = await fetch(url.href, {
     method: "GET",
   })
   const data = await response.json();
   const arr = data.data
-  return arr
+  return reduceToDictionary(arr)
 }
 
 const fetchService = {
