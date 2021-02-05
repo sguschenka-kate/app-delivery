@@ -1,4 +1,4 @@
-import { useContext, useRef, useState, useCallback } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { StoreContext } from '../../store';
 import { Category } from '../../components/Category';
 import { ProductItem } from '../../components/ProductItem';
@@ -6,23 +6,31 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 import * as types from '../../store/actions';
 import { fetchService } from '../../api/fetchService';
+import { useDebouncedFunction } from '../../lib/useDebounceFn';
 
 function CategoriesPage({ history }) {
 
   const { state, dispatch } = useContext(StoreContext);
-  const input = useRef(null)
   const [value, setValue] = useState('');
+  const d = useDebouncedFunction(v => setValue(v), 300)
+
 
   const categoriesFetched = state.categories !== null && Object.keys(state.categories).length > 0;
 
-  const handleSearch = async (value) => {
+  const handleSearch = useCallback(async () => {
     const data = await fetchService.searchData(value);
-    console.log(data)
     dispatch({
       type: types.FETCH_PRODUCTS,
       payload: data
     })
-  }
+  }, [dispatch, value])
+
+  useEffect(() => {
+    if (value) {
+      handleSearch()
+    }
+    return
+  }, [handleSearch, value])
 
   return (
     <div className="main">
@@ -31,10 +39,7 @@ function CategoriesPage({ history }) {
         <>
           <div className="search__container">
             <input
-              ref={input}
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              onInput={() => handleSearch(value)}
+              onChange={(e) => d(e.target.value)}
               type="search"
               placeholder="What do you wish to order?"
               className="search__input"

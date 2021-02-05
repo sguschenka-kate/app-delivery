@@ -107,6 +107,8 @@ function productsReducer(state, action) {
 
     case types.CLEAR_CART: {
       const cart = {}
+      localStorage.setItem('cart', JSON.stringify(cart))
+      localStorage.setItem('amount', JSON.stringify(0))
 
       return {
         ...state,
@@ -134,7 +136,7 @@ function productsReducer(state, action) {
       }
     }
 
-    case types.CALC_AMOUNT: {
+    case types.INIT_CART: {
       const amount = Object.values(state.cart).reduce((acc, current) => acc + current.totalAmount, 0)
       localStorage.setItem('amount', JSON.stringify(amount));
 

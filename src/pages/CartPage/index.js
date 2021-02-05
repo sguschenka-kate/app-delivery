@@ -38,7 +38,10 @@ function CartPage({ history }) {
 
   useEffect(() => {
     dispatch({
-      type: types.CALC_AMOUNT,
+      type: types.INIT_CART,
+    })
+    dispatch({
+      type: types.SYNC_FROM_LOCALSTORAGE,
     })
   }, [dispatch])
 
