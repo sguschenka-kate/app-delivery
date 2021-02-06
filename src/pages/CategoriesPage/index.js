@@ -76,7 +76,7 @@ function CategoriesPage({ history }) {
                 handleRoute={moveToProductPage}
               >
                 {state.cart[product.id] ?
-                  <Link to="/cart" className="products__btn">
+                  <Link to="/delivery-app/cart" className="products__btn">
                     <ButtonSecondary className="products__btn--go-to-cart">
                       go to cart
                   </ButtonSecondary>
@@ -94,7 +94,7 @@ function CategoriesPage({ history }) {
               <ul className="categories__list">
                 {Object.values(state.categories).map(category =>
                   <Link
-                    to={`/categories/${category.id}`}
+                    to={`/delivery-app/categories/${category.id}`}
                     key={category.id}
                   >
                     <Category
@@ -104,7 +104,7 @@ function CategoriesPage({ history }) {
                   </Link>
                 )}
               </ul>
-              <Link to='/products' className="categories__all-products">
+              <Link to='/delivery-app/products' className="categories__all-products">
                 All products
               </Link>
             </div>}

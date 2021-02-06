@@ -54,7 +54,7 @@ function ProductPage({ match }) {
             </div>
             <div className="product__price">&#36; {currentProduct.price}</div>
             {state.cart[currentProduct.id] ?
-              <Link to="/cart" className="products__btn">
+              <Link to="/delivery-app/cart" className="products__btn">
                 <ButtonSecondary className="products__btn--go-to-cart">
                   go to cart
                   </ButtonSecondary>

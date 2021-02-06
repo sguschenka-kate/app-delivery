@@ -56,7 +56,7 @@ function ProductsPage({ history, match }) {
                 handleRoute={moveToProductPage}
               >
                 {state.cart[product.id] ?
-                  <Link to="/cart" className="products__btn">
+                  <Link to="/delivery-app/cart" className="products__btn">
                     <ButtonSecondary className="products__btn--go-to-cart">
                       go to cart
                   </ButtonSecondary>

@@ -61,7 +61,7 @@ function CartPage({ history }) {
             </div>
 
             <Link
-              to='/order'
+              to='/delivery-app/order'
               className="btn-primary cart__button--order"
               onClick={handleOrder}
             >

@@ -4,7 +4,7 @@ function ProductItem({ product, children, className, handleRoute }) {
 
   const handleClick = ({ target }) => {
     if (target.tagName !== 'BUTTON') {
-      handleRoute(`/product/${product.id}`);
+      handleRoute(`/delivery-app/product/${product.id}`);
     } else {
       return
     }

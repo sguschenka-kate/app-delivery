@@ -20,7 +20,7 @@ function Layout({ children }) {
           <Link to="/delivery-app">
             <img src="/delivery-app/img/logo.svg" alt="logo" className="logo" />
           </Link>
-          <Link className="layout__cart" to="/cart">
+          <Link className="layout__cart" to="/delivery-app/cart">
             <img src="/delivery-app/img/cart.svg" alt="Cart" aria-hidden="true" className="layout__cart-img" />
 
             {state.cart && <div className="layout__cart-counter">{Object.keys(state.cart).length}</div>}
