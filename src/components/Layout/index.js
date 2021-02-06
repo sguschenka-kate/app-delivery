@@ -17,7 +17,7 @@ function Layout({ children }) {
           <figure className="avatar">
             <img src="/img/avatar.svg" alt="Avatar" aria-hidden="true" className="avatar__img" />
           </figure>
-          <Link to="/">
+          <Link to="/delivery-app">
             <img src="/img/logo.svg" alt="logo" className="logo" />
           </Link>
           <Link className="layout__cart" to="/cart">

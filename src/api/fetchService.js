@@ -2,7 +2,7 @@ import { reduceToDictionary } from "../lib/reduceToDictionary";
 // import { request } from './request';
 
 async function fetchProducts() {
-  const response = await fetch('http://95.217.218.239/api/product/', {
+  const response = await fetch('https://vkurse.today/api/product/', {
     method: "GET",
   })
   const data = await response.json();
@@ -12,7 +12,7 @@ async function fetchProducts() {
 }
 
 async function fetchProduct(id = null) {
-  const response = await fetch(`http://95.217.218.239/api/product/${id}`, {
+  const response = await fetch(`https://vkurse.today/api/product/${id}`, {
     method: "GET",
   })
   const data = await response.json();
@@ -23,7 +23,7 @@ async function fetchProduct(id = null) {
 
 async function fetchProductsByCategory(id) {
   const query = { category_id: id };
-  const url = new URL('http://95.217.218.239/api/product');
+  const url = new URL('https://vkurse.today/api/product');
 
   for (const key in query) {
     url.searchParams.set(key, query[key])
@@ -39,7 +39,7 @@ async function fetchProductsByCategory(id) {
 }
 
 async function fetchCategories() {
-  const response = await fetch("http://95.217.218.239/api/category", {
+  const response = await fetch("https://vkurse.today/api/category", {
     method: "GET",
   })
   const data = await response.json();
@@ -50,7 +50,7 @@ async function fetchCategories() {
 
 async function searchData(value) {
   const query = { search: value };
-  const url = new URL('http://95.217.218.239/api/product');
+  const url = new URL('https://vkurse.today/api/product');
 
   for (const key in query) {
     url.searchParams.set(key, query[key]);

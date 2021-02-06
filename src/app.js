@@ -40,7 +40,7 @@ function App() {
     <StoreContext.Provider value={{ state, dispatch }}>
       <Router>
         <Layout>
-          <Route exact path="/" component={CategoriesPage} />
+          <Route exact path="/delivery-app" component={CategoriesPage} />
           <Route path="/categories/:id" component={ProductsPage} />
           <Route path="/products" component={ProductsPage} />
           <Route path="/product/:id" component={ProductPage} />
