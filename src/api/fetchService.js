@@ -22,7 +22,7 @@ async function fetchProductsByCategory(id) {
   //   url.searchParams.set(key, query[key])
   // }
 
-  const response = await axios.get('http://easytour.club/api/product',{
+  const response = await axios.get('http://easytour.club/api/product', {
     params: query
   })
   const arr = response.data.data;
