@@ -4,18 +4,6 @@ import { exclude } from '../lib/exclude';
 function productsReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
-    case types.HANDLE_USER: {
-      const user = {
-        ...payload
-      }
-      console.log(user)
-
-      return {
-        ...state,
-        user
-      }
-    }
-
     case types.FETCH_CATEGORIES: {
       const categories = payload;
 
@@ -83,6 +71,7 @@ function productsReducer(state, action) {
         }
       } else {
         const totalAmount = +target.price * target.quantity;
+        console.log(totalAmount)
         target.totalAmount = totalAmount;
       }
 
@@ -129,8 +118,6 @@ function productsReducer(state, action) {
     }
 
     case types.SYNC_FROM_LOCALSTORAGE: {
-      const token = localStorage.getItem('token');
-
       const data = localStorage.getItem('cart');
       let amount = +JSON.parse(localStorage.getItem('amount'));
 
@@ -142,7 +129,6 @@ function productsReducer(state, action) {
 
       return {
         ...state,
-        token,
         cart: {
           ...state.cart,
           ...JSON.parse(data)

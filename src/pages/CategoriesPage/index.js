@@ -25,6 +25,27 @@ function CategoriesPage({ history }) {
     })
   }, [dispatch, value])
 
+  const submitForm = (e) => {
+    handleSearch();
+    console.log(e);
+  }
+
+  // const fetchData = useCallback(async () => {
+  //   dispatch({
+  //     type: types.SET_LOADING,
+  //     payload: true
+  //   });
+  //   const categories = await fetchService.fetchCategories();
+  //   dispatch({
+  //     type: types.FETCH_CATEGORIES,
+  //     payload: categories,
+  //   });
+  //   dispatch({
+  //     type: types.SET_LOADING,
+  //     payload: false
+  //   });
+  // }, [dispatch]);
+
   useEffect(() => {
     if (value) {
       handleSearch()
@@ -37,7 +58,7 @@ function CategoriesPage({ history }) {
 
       {categoriesFetched ?
         <>
-          <div className="search__container">
+          <form onSubmit={(e) => submitForm} className="search__container">
             <CustomInput
               onChange={(e) => d(e.target.value)}
               type="search"
@@ -45,7 +66,7 @@ function CategoriesPage({ history }) {
               className="search__input"
               aria-label="Search for products"
             />
-          </div>
+          </form>
 
           {value ?
             Object.values(state.products).map(product =>

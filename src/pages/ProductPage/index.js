@@ -26,7 +26,7 @@ function ProductPage({ match }) {
           <img
             src={currentProduct.img}
             alt={currentProduct.name}
-          // className="product__image"
+            className="product__image"
           />
           <h1 className="product__name" >
             {currentProduct.name}

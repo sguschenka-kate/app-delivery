@@ -64,27 +64,12 @@ async function searchData(value) {
   return reduceToDictionary(arr)
 }
 
-async function verifyUser(query) {
-  const response = await fetch('http://95.217.218.239/api/auth/login', {
-    method: "POST",
-    body: query,
-  })
-  const data = await response.json();
-  const user = data.data
-  console.log(user, '---')
-
-  return user
-}
-
-
-
 const fetchService = {
   fetchProducts,
   fetchProduct,
   fetchProductsByCategory,
   searchData,
   fetchCategories,
-  verifyUser,
 };
 
 export {

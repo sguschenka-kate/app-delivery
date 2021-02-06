@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { StoreContext } from '../../store';
 import { ProductItem } from '../../components/ProductItem';
-import { ButtonPrimary } from '../../components/ButtonPrimary';
+import { Counter } from '../../components/Counter';
 import { ButtonIcon } from '../../components/ButtonIcon';
 
 import { Link } from 'react-router-dom'
@@ -16,16 +16,6 @@ function CartPage({ history }) {
       type: types.DELETE_FROM_CART,
       payload: {
         id
-      }
-    })
-  }
-
-  const handleClick = (quantity, product) => {
-    const { id } = product;
-    dispatch({
-      type: types.EDIT_QUANTITY,
-      payload: {
-        quantity, id
       }
     })
   }
@@ -47,8 +37,6 @@ function CartPage({ history }) {
 
   const moveToProductPage = path => history.push(path)
 
-  // const moveToOrderPage = path => history.push(path);
-
   return (
     <div className="cart">
       {state.cart !== null &&
@@ -61,23 +49,7 @@ function CartPage({ history }) {
                 product={product}
                 handleRoute={moveToProductPage}
               >
-                <div className="counter">
-                  <ButtonPrimary
-                    className="counter__button"
-                    onClick={() => handleClick(product.quantity - 1, product)}
-                  >
-                    -
-                </ButtonPrimary>
-                  <div className="counter__quantity">
-                    x{product.quantity}
-                  </div>
-                  <ButtonPrimary
-                    onClick={() => handleClick(product.quantity + 1, product)}
-                    className="counter__button"
-                  >
-                    +
-                </ButtonPrimary>
-                </div>
+                <Counter product={product} />
                 <ButtonIcon className="cart__btn--delete" onClick={() => { handleDelete(product.id) }} />
               </ProductItem>
             )}
