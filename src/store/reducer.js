@@ -76,6 +76,7 @@ function productsReducer(state, action) {
       }
 
       amount = Object.values(cart).reduce((acc, current) => acc + +(current.totalAmount).toFixed(2), 0);
+      amount = amount.toFixed(2)
 
       localStorage.setItem('cart', JSON.stringify(cart));
 

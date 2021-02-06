@@ -48,7 +48,7 @@ function ProductPage({ match }) {
             <div className="product__info">
               <div className="product__meta">
                 <div className="product__meta--rate">{currentProduct.rate}</div>
-                <img src="/img/star.svg" alt="Star" className="product__meta--rate-image" aria-hidden="true" />
+                <img src="/delivery-app/img/star.svg" alt="Star" className="product__meta--rate-image" aria-hidden="true" />
               </div>
               <div className="product__time">{currentProduct.time} min</div>
             </div>
