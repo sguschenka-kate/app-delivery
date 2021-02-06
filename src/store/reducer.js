@@ -70,8 +70,8 @@ function productsReducer(state, action) {
           ...data
         }
       } else {
-        const totalAmount = +target.price * target.quantity;
-        console.log(totalAmount)
+        let totalAmount = +target.price * target.quantity;
+
         target.totalAmount = totalAmount;
       }
 
@@ -138,8 +138,8 @@ function productsReducer(state, action) {
     }
 
     case types.INIT_CART: {
-      const amount = Object.values(state.cart).reduce((acc, current) => acc + current.totalAmount, 0)
-      localStorage.setItem('amount', JSON.stringify(amount));
+      let amount = Object.values(state.cart).reduce((acc, current) => acc + current.totalAmount, 0)
+      localStorage.setItem('amount', JSON.stringify(amount.toFixed(2)));
 
       return {
         ...state,

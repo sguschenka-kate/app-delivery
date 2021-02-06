@@ -30,22 +30,6 @@ function CategoriesPage({ history }) {
     console.log(e);
   }
 
-  // const fetchData = useCallback(async () => {
-  //   dispatch({
-  //     type: types.SET_LOADING,
-  //     payload: true
-  //   });
-  //   const categories = await fetchService.fetchCategories();
-  //   dispatch({
-  //     type: types.FETCH_CATEGORIES,
-  //     payload: categories,
-  //   });
-  //   dispatch({
-  //     type: types.SET_LOADING,
-  //     payload: false
-  //   });
-  // }, [dispatch]);
-
   useEffect(() => {
     if (value) {
       handleSearch()
@@ -68,13 +52,18 @@ function CategoriesPage({ history }) {
             />
           </form>
 
-          {value ?
+          {value
+
+            ?
+
             Object.values(state.products).map(product =>
               <ProductItem
                 key={product.id}
                 product={product}
               />
-            ) :
+            )
+
+            :
             <div className="categoires">
               <ul className="categories__list">
                 {Object.values(state.categories).map(category =>
