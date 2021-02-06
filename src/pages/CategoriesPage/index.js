@@ -27,7 +27,7 @@ function CategoriesPage({ history }) {
 
   const submitForm = (e) => {
     handleSearch();
-    console.log(e);
+    e.preventDefault();
   }
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function CategoriesPage({ history }) {
 
       {categoriesFetched ?
         <>
-          <form onSubmit={(e) => submitForm} className="search__container">
+          <form onSubmit={(e) => submitForm(e)} className="search__container">
             <CustomInput
               onChange={(e) => d(e.target.value)}
               type="search"
