@@ -1,10 +1,17 @@
 import { reduceToDictionary } from '../lib/reduceToDictionary';
+<<<<<<< HEAD
 
 const request = async (config) => {
   const body = config.body ? JSON.stringify(config.body) : undefined;
   const { url, query } = config;
   const uri = new URL(`http://95.217.218.239/api${url}`);
+=======
+>>>>>>> authVersion
 
+const request = async (config) => {
+  const body = config.body ? JSON.stringify(config.body) : undefined;
+  const { url, query } = config;
+  const uri = new URL(`https://easytour.club/api${url}`);
   for (const key in query) {
     uri.searchParams.set(key, query[key]);
   }

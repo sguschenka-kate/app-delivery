@@ -40,15 +40,15 @@ function App() {
     <StoreContext.Provider value={{ state, dispatch }}>
       <Router>
         <Layout>
-          <Route exact path="/" component={CategoriesPage} />
-          <Route path="/categories/:id" component={ProductsPage} />
-          <Route path="/products" component={ProductsPage} />
-          <Route path="/product/:id" component={ProductPage} />
-          <Route path="/cart" component={CartPage} />
-          <Route path="/order" component={OrderPage} />
+          <Route exact path="/delivery-app" component={CategoriesPage} />
+          <Route path="/delivery-app/categories/:id" component={ProductsPage} />
+          <Route path="/delivery-app/products" component={ProductsPage} />
+          <Route path="/delivery-app/product/:id" component={ProductPage} />
+          <Route path="/delivery-app/cart" component={CartPage} />
+          <Route path="/delivery-app/order" component={OrderPage} />
         </Layout>
       </Router>
-    </StoreContext.Provider >
+    </StoreContext.Provider>
   )
 }
 

@@ -48,13 +48,13 @@ function ProductPage({ match }) {
             <div className="product__info">
               <div className="product__meta">
                 <div className="product__meta--rate">{currentProduct.rate}</div>
-                <img src="/img/star.svg" alt="Star" className="product__meta--rate-image" aria-hidden="true" />
+                <img src="/delivery-app/img/star.svg" alt="Star" className="product__meta--rate-image" aria-hidden="true" />
               </div>
               <div className="product__time">{currentProduct.time} min</div>
             </div>
             <div className="product__price">&#36; {currentProduct.price}</div>
             {state.cart[currentProduct.id] ?
-              <Link to="/cart" className="products__btn">
+              <Link to="/delivery-app/cart" className="products__btn">
                 <ButtonSecondary className="products__btn--go-to-cart">
                   go to cart
                   </ButtonSecondary>

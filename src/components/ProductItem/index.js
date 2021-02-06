@@ -4,7 +4,7 @@ function ProductItem({ product, children, className, handleRoute }) {
 
   const handleClick = ({ target }) => {
     if (target.tagName !== 'BUTTON') {
-      handleRoute(`/product/${product.id}`);
+      handleRoute(`/delivery-app/product/${product.id}`);
     } else {
       return
     }
@@ -26,7 +26,7 @@ function ProductItem({ product, children, className, handleRoute }) {
           <div className="product-item__meta">
             <span className="product-item__meta-time">{product.time} min</span>
             <span className="product-item__meta-rank">
-              <img src="/img/star.svg" alt="Star" className="product-item__meta-rank-image" aria-hidden="true" />
+              <img src="/delivery-app/img/star.svg" alt="Star" className="product-item__meta-rank-image" aria-hidden="true" />
               {product.rate}
             </span>
             <div className="product-item__price">&#36; {product.price}</div>
