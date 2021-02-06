@@ -1,3 +1,4 @@
+@import '../../assets/scss/mixins'; 
 .product {
   height: var(--vh);
 
@@ -7,5 +8,51 @@
 }
 
 .product__image {
+  max-width: 200px;
   min-width: 200px;
+  border-radius: 28px
+}
+
+.product__name {
+  @include make-font(20, 24);
+}
+
+.product__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product__info-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 600px) {
+    width: 300px;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 400px;
+  }
+}
+
+.product__meta {
+  min-width: 40px;
+  @include make-font(25, 30);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ffd344;
+
+}
+
+.product__price {
+  @include make-font(25, 30);
+  color: #007aff;
+}
+
+.product__meta--rate-image {
+  width: 25px;
 }

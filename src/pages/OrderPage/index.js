@@ -19,14 +19,14 @@ function OrderPage() {
   const orderAccepted = useCallback(function () {
     setTimeout(() => {
       setShown(statusMessages[1]);
-    }, 800);
+    }, 2000);
     setTimeout(() => {
       setShown(statusMessages[2]);
 
-    }, 1600);
+    }, 4000);
     setTimeout(() => {
       setShown(statusMessages[3]);
-    }, 3200)
+    }, 6000)
   }, [statusMessages])
 
   useEffect(() => {

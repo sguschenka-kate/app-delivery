@@ -4,18 +4,6 @@ import { exclude } from '../lib/exclude';
 function productsReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
-    case types.HANDLE_USER: {
-      const user = {
-        ...payload
-      }
-      console.log(user)
-
-      return {
-        ...state,
-        user
-      }
-    }
-
     case types.FETCH_CATEGORIES: {
       const categories = payload;
 
@@ -82,11 +70,13 @@ function productsReducer(state, action) {
           ...data
         }
       } else {
-        const totalAmount = +target.price * target.quantity;
+        let totalAmount = +target.price * target.quantity;
+
         target.totalAmount = totalAmount;
       }
 
       amount = Object.values(cart).reduce((acc, current) => acc + +(current.totalAmount).toFixed(2), 0);
+      amount = amount.toFixed(2)
 
       localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -129,8 +119,6 @@ function productsReducer(state, action) {
     }
 
     case types.SYNC_FROM_LOCALSTORAGE: {
-      const token = localStorage.getItem('token');
-
       const data = localStorage.getItem('cart');
       let amount = +JSON.parse(localStorage.getItem('amount'));
 
@@ -142,7 +130,6 @@ function productsReducer(state, action) {
 
       return {
         ...state,
-        token,
         cart: {
           ...state.cart,
           ...JSON.parse(data)
@@ -152,8 +139,8 @@ function productsReducer(state, action) {
     }
 
     case types.INIT_CART: {
-      const amount = Object.values(state.cart).reduce((acc, current) => acc + current.totalAmount, 0)
-      localStorage.setItem('amount', JSON.stringify(amount));
+      let amount = Object.values(state.cart).reduce((acc, current) => acc + current.totalAmount, 0)
+      localStorage.setItem('amount', JSON.stringify(amount.toFixed(2)));
 
       return {
         ...state,

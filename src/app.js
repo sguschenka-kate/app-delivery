@@ -8,7 +8,6 @@ import { CategoriesPage } from './pages/CategoriesPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
-import { AuthPage } from './pages/AutPage';
 import { OrderPage } from './pages/OrderPage';
 import * as types from './store/actions';
 import { fetchService } from './api/fetchService';
@@ -40,19 +39,16 @@ function App() {
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <Router>
-        {state.token !== null ?
-          < Layout >
-            <Route exact path="/" component={CategoriesPage} />
-            <Route path="/categories/:id" component={ProductsPage} />
-            <Route path="/products" component={ProductsPage} />
-            <Route path="/product/:id" component={ProductPage} />
-            <Route path="/cart" component={CartPage} />
-            <Route path="/order" component={OrderPage} />
-            <Route path="/auth" component={AuthPage} />
-          </Layout> : <AuthPage />
-        }
+        <Layout>
+          <Route exact path="/delivery-app" component={CategoriesPage} />
+          <Route path="/delivery-app/categories/:id" component={ProductsPage} />
+          <Route path="/delivery-app/products" component={ProductsPage} />
+          <Route path="/delivery-app/product/:id" component={ProductPage} />
+          <Route path="/delivery-app/cart" component={CartPage} />
+          <Route path="/delivery-app/order" component={OrderPage} />
+        </Layout>
       </Router>
-    </StoreContext.Provider >
+    </StoreContext.Provider>
   )
 }
 

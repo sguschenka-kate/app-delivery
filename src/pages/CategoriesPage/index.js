@@ -3,6 +3,9 @@ import { StoreContext } from '../../store';
 import { Category } from '../../components/Category';
 import { ProductItem } from '../../components/ProductItem';
 import { CustomInput } from '../../components/CustomInput';
+import { ButtonSecondary } from '../../components/ButtonSecondary';
+import { ButtonPrimary } from '../../components/ButtonPrimary';
+
 import './style.scss';
 import { Link } from 'react-router-dom';
 import * as types from '../../store/actions';
@@ -17,6 +20,15 @@ function CategoriesPage({ history }) {
 
   const categoriesFetched = state.categories !== null && Object.keys(state.categories).length > 0;
 
+  const handleClick = (product) => {
+    dispatch({
+      type: types.ADD_TO_CART,
+      payload: {
+        product
+      }
+    })
+  }
+
   const handleSearch = useCallback(async () => {
     const data = await fetchService.searchData(value);
     dispatch({
@@ -25,6 +37,11 @@ function CategoriesPage({ history }) {
     })
   }, [dispatch, value])
 
+  const submitForm = (e) => {
+    handleSearch();
+    e.preventDefault();
+  }
+
   useEffect(() => {
     if (value) {
       handleSearch()
@@ -32,12 +49,13 @@ function CategoriesPage({ history }) {
     return
   }, [handleSearch, value])
 
+  const moveToProductPage = path => history.push(path)
   return (
     <div className="main">
 
       {categoriesFetched ?
         <>
-          <div className="search__container">
+          <form onSubmit={(e) => submitForm(e)} className="search__container">
             <CustomInput
               onChange={(e) => d(e.target.value)}
               type="search"
@@ -45,20 +63,38 @@ function CategoriesPage({ history }) {
               className="search__input"
               aria-label="Search for products"
             />
-          </div>
+          </form>
 
-          {value ?
+          {value
+
+            ?
+
             Object.values(state.products).map(product =>
               <ProductItem
-                key={product.id}
                 product={product}
-              />
-            ) :
+                key={product.id}
+                handleRoute={moveToProductPage}
+              >
+                {state.cart[product.id] ?
+                  <Link to="/delivery-app/cart" className="products__btn">
+                    <ButtonSecondary className="products__btn--go-to-cart">
+                      go to cart
+                  </ButtonSecondary>
+                  </Link> :
+                  <ButtonPrimary onClick={() => handleClick(product)} className="products__btn">
+                    buy
+                </ButtonPrimary>
+                }
+
+              </ProductItem>
+            )
+
+            :
             <div className="categoires">
               <ul className="categories__list">
                 {Object.values(state.categories).map(category =>
                   <Link
-                    to={`/categories/${category.id}`}
+                    to={`/delivery-app/categories/${category.id}`}
                     key={category.id}
                   >
                     <Category
@@ -68,7 +104,7 @@ function CategoriesPage({ history }) {
                   </Link>
                 )}
               </ul>
-              <Link to='/products' className="categories__all-products">
+              <Link to='/delivery-app/products' className="categories__all-products">
                 All products
               </Link>
             </div>}

@@ -10,24 +10,6 @@
   margin: 0 auto;
 }
 
-.counter {
-  display: flex;
-  align-self: flex-end;
-}
-
-.counter__quantity {
-  display: flex;
-  align-items: center;
-  font-weight: 200;
-  @include make-font(15, 18);
-  margin: 0 7px;
-}
-
-.counter__button {
-  width: 35px;
-  padding: 15px 10px;
-}
-
 .cart__btn--delete {
   align-self: flex-end;
 }
