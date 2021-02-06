@@ -1,0 +1,37 @@
+@import '../../assets/scss/mixins';
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth__input {
+  box-shadow: var(--box-shadow);
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+.auth__logo {
+  width: inherit;
+  max-width: 500px;
+}
+
+.auth__btn {
+  padding: 10px;
+  width: 100px;
+  height: 35px;
+  @include make-font(16, 19);
+}

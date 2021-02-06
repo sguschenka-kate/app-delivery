@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useCallback } from 'react';
 import { StoreContext } from '../../store';
 import { Category } from '../../components/Category';
 import { ProductItem } from '../../components/ProductItem';
+import { CustomInput } from '../../components/CustomInput';
 import './style.scss';
 import { Link } from 'react-router-dom';
 import * as types from '../../store/actions';
@@ -13,7 +14,6 @@ function CategoriesPage({ history }) {
   const { state, dispatch } = useContext(StoreContext);
   const [value, setValue] = useState('');
   const d = useDebouncedFunction(v => setValue(v), 300)
-
 
   const categoriesFetched = state.categories !== null && Object.keys(state.categories).length > 0;
 
@@ -38,7 +38,7 @@ function CategoriesPage({ history }) {
       {categoriesFetched ?
         <>
           <div className="search__container">
-            <input
+            <CustomInput
               onChange={(e) => d(e.target.value)}
               type="search"
               placeholder="What do you wish to order?"
@@ -54,22 +54,24 @@ function CategoriesPage({ history }) {
                 product={product}
               />
             ) :
-            <ul className="categories__list">
-              {Object.values(state.categories).map(category =>
-                <Link
-                  to={`/categories/${category.id}`}
-                  key={category.id}
-                >
-                  <Category
-                    category={category}
+            <div className="categoires">
+              <ul className="categories__list">
+                {Object.values(state.categories).map(category =>
+                  <Link
+                    to={`/categories/${category.id}`}
+                    key={category.id}
                   >
-                  </Category>
-                </Link>
-              )}
-              <Link to='/products'>
-                all products
-            </Link>
-            </ul>}
+                    <Category
+                      category={category}
+                    >
+                    </Category>
+                  </Link>
+                )}
+              </ul>
+              <Link to='/products' className="categories__all-products">
+                All products
+              </Link>
+            </div>}
         </> :
         <p>Something went wrong...🥺 please, try again </p>
       }

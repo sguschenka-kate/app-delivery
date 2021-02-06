@@ -1,21 +1,27 @@
-import { useContext, useEffect, useState } from 'react';
-import { StoreContext } from '../../store';
+import { useEffect, useState, useCallback } from 'react';
+import { fetchService } from '../../api/fetchService';
 
 import './style.scss';
 
 function ProductPage({ match }) {
   const [currentProduct, setCurrentProduct] = useState(null);
-  const { state } = useContext(StoreContext);
 
   const id = match.params.id;
+  const fetchData = useCallback(async (id) => {
+    const product = await fetchService.fetchProduct(id);
+    setCurrentProduct(product)
+    return product
+  }, [])
+
+  console.log(currentProduct, 'ffff')
 
   useEffect(() => {
-    setCurrentProduct(state.products[id])
-  }, [id, state.products])
+    fetchData(id);
+  }, [fetchData, id])
 
   return (
     <>
-      {currentProduct !== null &&
+      {currentProduct &&
         <div className="product">
           <img
             src={currentProduct.img}
@@ -28,7 +34,7 @@ function ProductPage({ match }) {
           <div className="product__rate">{currentProduct.rate}</div>
           <div className="product__time">{currentProduct.time} min</div>
           <div className="product__price">&#36; {currentProduct.price}</div>
-          {/* <div className="product__description">{currentProduct.description}</div> */}
+          <div id="description" className="product__description" dangerouslySetInnerHTML={{ __html: currentProduct.description }} />
         </div>
       }
     </>

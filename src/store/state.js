@@ -4,7 +4,8 @@ const initialState = {
   cart: {},
   isLoading: true,
   amount: 0,
-  searchedProducts: [],
+  token: null,
+  user: {},
 };
 
 export {

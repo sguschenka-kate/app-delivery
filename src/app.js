@@ -33,13 +33,6 @@ function App() {
     })
   }, [dispatch]);
 
-  // const handleRendering = useCallback(() => {
-  //   state.user === null ? (dispatch({
-  //     type: types.SET_LOADING,
-  //     payload: false
-  //   }) && <Link to="/auth" />) : fetchData()
-  // }, [fetchData, state.user])
-
   useEffect(() => {
     fetchData()
   }, [dispatch, fetchData])
@@ -47,15 +40,17 @@ function App() {
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <Router>
-        <Layout>
-          <Route exact path="/" component={CategoriesPage} />
-          <Route path="/categories/:id" component={ProductsPage} />
-          <Route path="/products" component={ProductsPage} />
-          <Route path="/product/:id" component={ProductPage} />
-          <Route path="/cart" component={CartPage} />
-          <Route path="/auth" component={AuthPage} />
-          <Route path="/order" component={OrderPage} />
-        </Layout>
+        {state.token !== null ?
+          < Layout >
+            <Route exact path="/" component={CategoriesPage} />
+            <Route path="/categories/:id" component={ProductsPage} />
+            <Route path="/products" component={ProductsPage} />
+            <Route path="/product/:id" component={ProductPage} />
+            <Route path="/cart" component={CartPage} />
+            <Route path="/order" component={OrderPage} />
+            <Route path="/auth" component={AuthPage} />
+          </Layout> : <AuthPage />
+        }
       </Router>
     </StoreContext.Provider >
   )

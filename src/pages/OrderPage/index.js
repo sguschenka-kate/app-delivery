@@ -1,41 +1,47 @@
-import React from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { useEffect, useState, useCallback, useMemo } from 'react';
+import { Map } from '../../components/Map';
 
-import mapStyles from './mapStyles';
-import './style.scss'
-
-const mapContainerStyle = {
-  width: '100%',
-  height: '100%',
-}
-const center = {
-  lat: 50.464098755134145,
-  lng: 0.49977330777314
-}
-
-const options = {
-  styles: mapStyles,
-  disableDefaultUI: true,
-  zoomControl: true
-}
+import './style.scss';
 
 function OrderPage() {
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
-  })
 
-  if (loadError) return 'Error loading maps';
-  if (!isLoaded) return 'Loading maps'
+  const [marker, setMarker] = useState([]);
+
+  const statusMessages = useMemo(() => [
+    'Your order is accepted...',
+    'Your order is being prepared...',
+    'The courier is on the way...',
+    'The order is delivered. Bon appetit! 💛'
+  ], []);
+
+  const [isShown, setShown] = useState(statusMessages[0]);
+
+  const orderAccepted = useCallback(function () {
+    setTimeout(() => {
+      setShown(statusMessages[1]);
+    }, 800);
+    setTimeout(() => {
+      setShown(statusMessages[2]);
+
+    }, 1600);
+    setTimeout(() => {
+      setShown(statusMessages[3]);
+    }, 3200)
+  }, [statusMessages])
+
+  useEffect(() => {
+    setMarker({ lat: 50.46425108185003, lng: 30.49979118492588, });
+    orderAccepted()
+  }, [orderAccepted])
 
   return (
-    <div className="map__container">
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={8}
-        center={center}
-        options={options}
-      />
-    </div>
+    <div className="order">
+      <div className="order__status">
+
+        {isShown}
+      </div>
+      <Map marker={marker} />
+    </div >
   )
 }
 
