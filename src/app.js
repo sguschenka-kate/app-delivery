@@ -48,7 +48,7 @@ function App() {
           <Route path="/delivery-app/order" component={OrderPage} />
         </Layout>
       </Router>
-    </StoreContext.Provider >
+    </StoreContext.Provider>
   )
 }
 
