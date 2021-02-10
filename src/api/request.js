@@ -1,4 +1,4 @@
-import { reduceToDictionary } from '../lib/reduceToDictionary';
+// import { reduceToDictionary } from '../lib/reduceToDictionary';
 
 const request = async (config) => {
   const body = config.body ? JSON.stringify(config.body) : undefined;
