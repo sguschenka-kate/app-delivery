@@ -65,15 +65,26 @@ async function searchData(value) {
 }
 
 async function verifyUser(query) {
-  const response = await fetch('http://95.217.218.239/api/auth/login', {
-    method: "POST",
-    body: query,
+
+  const url = new URL('https://vkurse.today/api/auth/login');
+
+
+  const response = await fetch(url.href, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    body: JSON.stringify(query) // body data type must match "Content-Type" header
   })
   const data = await response.json();
-  const user = data.data
-  console.log(user, '---')
 
-  return user
+  return data.data
 }
 
 

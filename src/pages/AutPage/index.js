@@ -15,17 +15,19 @@ function AuthPage() {
   });
 
   const handleLogin = async (data) => {
-    const user = await fetchService.verifyUser(data);
+    const dataUser = await fetchService.verifyUser(data);
+    if(dataUser)
+    console.log(dataUser);
     dispatch({
       type: types.HANDLE_USER,
-      payload: user,
+      payload: dataUser,
     })
   }
 
   return (
     <div className="auth">
       <img src="./img/loader-man.png" alt="logo" className="auth__logo" />
-      <form className="auth__form">
+      <div className="auth__form">
         <Input
           className="search__input auth__input"
           placeholder="+380 50 250 5050"
@@ -42,15 +44,11 @@ function AuthPage() {
           required
         />
 
-        <Link
-          to="/categories"
-          onClick={() => handleLogin(data)}
-          className="btn-primary auth__btn margin-top"
-          required
-        >
+        <button type="button"
+         onClick={() => handleLogin(data)} className="btn-primary auth__btn margin-top">
           Enter
-        </Link>
-      </form>
+        </button>
+      </div>
 
     </div>
   )
