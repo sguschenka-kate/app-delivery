@@ -64,6 +64,18 @@ async function verifyUser(user) {
   }
 }
 
+async function getUser() {
+  try {
+    const response = await axios.get('http://easytour.club/api/user')
+    const arr = response.data.data
+    console.log(arr)
+    return reduceToDictionary(arr)
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+
 const fetchService = {
   fetchProducts,
   fetchProduct,
@@ -71,6 +83,7 @@ const fetchService = {
   searchData,
   fetchCategories,
   verifyUser,
+  getUser
 };
 
 export {

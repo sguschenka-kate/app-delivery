@@ -15,7 +15,9 @@ function ProductItem({ product, children, className, handleRoute }) {
       className={`product-item ${className}`}
       onClick={handleClick}
     >
-      <img src={product.img} className="product-item__image" alt={product.name} />
+      <div className="product-item__image-container">
+        <img src={product.img} className="product-item__image" alt={product.name} />
+      </div>
       <div className="product-item__container">
         <h3 className="product__name">
           {product.name}

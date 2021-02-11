@@ -14,9 +14,11 @@ function Layout({ children }) {
     <div className="layout">
       <header className="header">
         <div className="header__container">
-          <figure className="avatar">
-            <img src="/img/avatar.svg" alt="Avatar" aria-hidden="true" className="avatar__img" />
-          </figure>
+          <Link to="/user">
+            <figure className="avatar">
+              <img src="/img/avatar.svg" alt="Avatar" aria-hidden="true" className="avatar__img" />
+            </figure>
+          </Link>
           <Link to="/">
             <img src="/img/logo.svg" alt="logo" className="logo" />
           </Link>
