@@ -4,6 +4,7 @@ const initialState = {
   cart: {},
   isLoading: true,
   amount: 0,
+  location: null,
   token: null,
   user: {},
 };

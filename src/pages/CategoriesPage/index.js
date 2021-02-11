@@ -17,6 +17,23 @@ function CategoriesPage({ history }) {
 
   const categoriesFetched = state.categories !== null && Object.keys(state.categories).length > 0;
 
+
+  const fetchData = useCallback(async () => {
+
+    const categories = await fetchService.fetchCategories();
+    dispatch({
+      type: types.FETCH_CATEGORIES,
+      payload: categories,
+    });
+    dispatch({
+      type: types.SET_LOADING,
+      payload: false
+    });
+    dispatch({
+      type: types.SYNC_FROM_LOCALSTORAGE
+    })
+  }, [dispatch]);
+
   const handleSearch = useCallback(async () => {
     const data = await fetchService.searchData(value);
     dispatch({
@@ -26,11 +43,12 @@ function CategoriesPage({ history }) {
   }, [dispatch, value])
 
   useEffect(() => {
+    fetchData()
     if (value) {
       handleSearch()
     }
     return
-  }, [handleSearch, value])
+  }, [fetchData, handleSearch, value])
 
   return (
     <div className="main">

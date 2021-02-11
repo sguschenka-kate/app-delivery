@@ -8,7 +8,6 @@ function productsReducer(state, action) {
       const user = {
         ...payload
       }
-      console.log(user)
 
       return {
         ...state,
@@ -129,8 +128,6 @@ function productsReducer(state, action) {
     }
 
     case types.SYNC_FROM_LOCALSTORAGE: {
-      const token = localStorage.getItem('token');
-
       const data = localStorage.getItem('cart');
       let amount = +JSON.parse(localStorage.getItem('amount'));
 
@@ -142,7 +139,6 @@ function productsReducer(state, action) {
 
       return {
         ...state,
-        token,
         cart: {
           ...state.cart,
           ...JSON.parse(data)

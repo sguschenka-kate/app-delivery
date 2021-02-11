@@ -50,12 +50,27 @@ async function searchData(value) {
   return reduceToDictionary(arr)
 }
 
+async function verifyUser(user) {
+  try {
+    const response = await axios.get('http://easytour.club/api/user', {
+      params: user,
+    })
+    const arr = response.data.data
+    console.log(arr)
+    return reduceToDictionary(arr)
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+
 const fetchService = {
   fetchProducts,
   fetchProduct,
   fetchProductsByCategory,
   searchData,
   fetchCategories,
+  verifyUser,
 };
 
 export {
