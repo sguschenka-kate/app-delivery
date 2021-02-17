@@ -1,9 +1,7 @@
 import { useContext, useEffect, useCallback } from 'react';
 import { StoreContext } from '../../store';
-import { Link } from 'react-router-dom';
+import { ProductItemButtons } from '../../components/ProductItemButtons';
 import { ProductItem } from '../../components/ProductItem';
-import { ButtonPrimary } from '../../components/ButtonPrimary';
-import { ButtonSecondary } from '../../components/ButtonSecondary';
 
 import { fetchService } from '../../api/fetchService';
 import * as types from '../../store/actions';
@@ -12,16 +10,6 @@ import './style.scss';
 function ProductsPage({ history, match }) {
 
   const { state, dispatch } = useContext(StoreContext);
-
-
-  const handleClick = (product) => {
-    dispatch({
-      type: types.ADD_TO_CART,
-      payload: {
-        product
-      }
-    })
-  }
 
   const fetchData = useCallback(async () => {
     const id = match.params.id || null;
@@ -55,17 +43,7 @@ function ProductsPage({ history, match }) {
                 key={product.id}
                 handleRoute={moveToProductPage}
               >
-                {state.cart[product.id] ?
-                  <Link to="/cart" className="products__btn">
-                    <ButtonSecondary className="products__btn--go-to-cart">
-                      go to cart
-                  </ButtonSecondary>
-                  </Link> :
-                  <ButtonPrimary onClick={() => handleClick(product)} className="products__btn">
-                    buy
-                </ButtonPrimary>
-                }
-
+                <ProductItemButtons product={product} />
               </ProductItem>
             )}
           </ul>

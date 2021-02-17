@@ -6,7 +6,10 @@ const initialState = {
   amount: 0,
   location: null,
   token: 1,
-  user: {},
+  user: {
+    // first_name: 'Olexandr',
+    // last_name: 'Bilan',
+  },
 };
 
 export {
