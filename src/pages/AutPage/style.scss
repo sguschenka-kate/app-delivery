@@ -14,10 +14,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: fit-content;
 }
 
 .auth__input {
   box-shadow: var(--box-shadow);
+  width: 100%;
+}
+
+.auth__input--phone {
+  padding: 10px;
+  flex: 1 0;
+  border: 0.5px solid #ffca05 !important;
+}
+
+.auth__input--phone-button {
+  border: 0.5px solid #ffca05 !important;
+}
+
+.auth__input--phone-dropdown {
+  border: 0.5px solid #ffca05 !important;
 }
 
 .margin-top {

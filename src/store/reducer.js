@@ -4,16 +4,51 @@ import { exclude } from '../lib/exclude';
 function productsReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
-    case types.HANDLE_USER: {
+    case types.LOGIN_USER: {
+      const user = {
+        ...payload.user,
+      };
+      const token = payload.access_token;
+
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', JSON.stringify(token));
+
+
+      return {
+        ...state,
+        user,
+        token
+      }
+    }
+
+    case types.EDIT_USER: {
       const user = {
         ...payload
       }
+
+      localStorage.setItem('user', JSON.stringify(user));
 
       return {
         ...state,
         user
       }
     }
+
+    case types.LOGOUT_USER: {
+      const user = {};
+      const token = null;
+
+      localStorage.setItem('user', JSON.stringify({}));
+      localStorage.setItem('token', JSON.stringify(null));
+
+
+      return {
+        ...state,
+        user,
+        token
+      }
+    }
+
 
     case types.FETCH_CATEGORIES: {
       const categories = payload;
@@ -128,6 +163,8 @@ function productsReducer(state, action) {
     }
 
     case types.SYNC_FROM_LOCALSTORAGE: {
+      const token = JSON.parse(localStorage.getItem('token'));
+      const user = JSON.parse(localStorage.getItem('user'));
       const data = localStorage.getItem('cart');
       let amount = +JSON.parse(localStorage.getItem('amount'));
 
@@ -143,7 +180,9 @@ function productsReducer(state, action) {
           ...state.cart,
           ...JSON.parse(data)
         },
-        amount
+        amount,
+        token,
+        user
       }
     }
 

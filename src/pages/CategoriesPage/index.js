@@ -13,7 +13,7 @@ function CategoriesPage({ history }) {
 
   const { state, dispatch } = useContext(StoreContext);
   const [value, setValue] = useState('');
-  const d = useDebouncedFunction(v => setValue(v), 300)
+  const d = useDebouncedFunction(v => setValue(v), 600)
 
   const categoriesFetched = state.categories !== null && Object.keys(state.categories).length > 0;
 
@@ -29,9 +29,6 @@ function CategoriesPage({ history }) {
       type: types.SET_LOADING,
       payload: false
     });
-    dispatch({
-      type: types.SYNC_FROM_LOCALSTORAGE
-    })
   }, [dispatch]);
 
   const handleSearch = useCallback(async () => {

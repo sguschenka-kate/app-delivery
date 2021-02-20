@@ -1,12 +1,12 @@
 @import '../../assets/scss/mixins.scss';
 
 .btn-primary {
-  @include make-font(12, 15);
+  @include make-font(14, 18);
   font-weight: 500;
 
   padding: 10px;
   height: 35px;
-  width: 70px;
+  width: 80px;
   border: 0.5px solid #ffca05;
   color: #007aff;
   background: transparent;

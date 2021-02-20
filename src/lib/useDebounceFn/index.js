@@ -1,8 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
-export default function useDebouncedFunction(func, delay, cleanUp = false) {
+function useDebouncedFunction(func, delay) {
   const timeoutRef = useRef();
-
   // Очистка таймера
   function clearTimer() {
     if (timeoutRef.current) {
@@ -10,10 +9,6 @@ export default function useDebouncedFunction(func, delay, cleanUp = false) {
       timeoutRef.current = undefined;
     }
   }
-
-  // Очищаем таймер при анмаунте компонента, если cleanUp выставлен в true
-  // и тем самым отменяем последний запланированный вызов
-  useEffect(() => (cleanUp ? clearTimer : undefined), [cleanUp]);
 
   return (...args) => {
     clearTimer();

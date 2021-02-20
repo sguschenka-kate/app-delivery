@@ -23,7 +23,10 @@ function App() {
     dispatch({
       type: types.SET_LOADING,
       payload: false
-    })
+    });
+    dispatch({
+      type: types.SYNC_FROM_LOCALSTORAGE
+    });
   }
 
   useEffect(() => {
@@ -37,7 +40,6 @@ function App() {
         <Switch>
           <Route exact path="/auth" component={AuthPage} />
           <Layout>
-            {/* <Switch> */}
             <ProtectedRoute exact path="/" component={CategoriesPage} />
             <ProtectedRoute path="/categories/:id" component={ProductsPage} />
             <ProtectedRoute path="/products" component={ProductsPage} />
@@ -45,7 +47,6 @@ function App() {
             <ProtectedRoute path="/cart" component={CartPage} />
             <ProtectedRoute path="/order" component={OrderPage} />
             <ProtectedRoute path="/user" component={UserPage} />
-            {/* </Switch> */}
           </Layout>
         </Switch>
       </Router>

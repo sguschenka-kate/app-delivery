@@ -5,11 +5,8 @@ const initialState = {
   isLoading: true,
   amount: 0,
   location: null,
-  token: 1,
-  user: {
-    // first_name: 'Olexandr',
-    // last_name: 'Bilan',
-  },
+  token: null,
+  user: {},
 };
 
 export {

@@ -1,68 +1,55 @@
 import { useContext, useState } from "react";
+
 import { StoreContext } from '../../store';
-// import { fetchService } from "../../api/fetchService";
-import { CustomInput } from '../../components/CustomInput';
-import { ButtonPrimary } from '../../components/ButtonPrimary';
+import * as types from '../../store/actions';
+import { fetchService } from "../../api/fetchService";
+import { UserInfo } from '../../components/User/UserInfo';
+import { UserForm } from '../../components/User/UserForm';
 
 import './style.scss';
 
 function UserPage() {
+  const { state, dispatch } = useContext(StoreContext);
+
   const [editing, setEditing] = useState(false);
 
-  const { state } = useContext(StoreContext);
+  const [name, setName] = useState(state.user.name || '');
+  const [surname, setSurname] = useState(state.user.surname || '');
+  const [address, setAddress] = useState(state.user.address || '');
 
-  const handleChanges = (e) => {
+  const editUser = async (data) => {
+    console.log({ ...data })
+    const user = await fetchService.editUser(data);
+    console.log(user)
+  }
 
-
+  const handleEditModeOff = (e) => {
+    const user = editUser({ name, surname, address });
+    dispatch({
+      type: types.EDIT_USER,
+      payload: {
+        user
+      }
+    });
+    setEditing(false);
+    e.preventDefault();
   }
 
 
-  // const fetchUser = async () => {
-  //   const user = await fetchService.getUser();
-  //   console.log(user)
-  // }
-
-  // useEffect(() => {
-  //   fetchUser()
-  // }, [])
 
   return (
-    <form className="user">
+    <form onSubmit={handleEditModeOff} className="user">
 
-      {state.user.first_name && !editing &&
-        <div className="user__name">
-          <span className="user__name-label">First Name:</span>
-          <span className="user__name-first-name">{state.user.first_name}</span>
-          <ButtonPrimary
-            onClick={() => setEditing(true)}
-            className="user__name-button">Edit</ButtonPrimary>
-        </div>
-      }
-
-      {state.user.first_name && editing &&
-        <div className="user__name">
-          <CustomInput
-            className="user__name-input"
-            placeholder="Enter your first name"
-          />
-          <ButtonPrimary
-            className="user__name-button"
-            onClick={(e) => handleChanges(e)}
-          >Accept</ButtonPrimary>
-        </div>
-      }
-
-      {!state.user.first_name &&
-        <div className="user__name">
-          <CustomInput
-            className="user__name-input"
-            placeholder="Enter your first name"
-          />
-          <ButtonPrimary
-            className="user__name-button"
-            onClick={(e) => handleChanges(e)}
-          >Accept</ButtonPrimary>
-        </div>
+      {!editing
+        ?
+        <UserInfo handleEditModeOn={() => setEditing(true)} />
+        :
+        <UserForm
+          handleEditModeOff={handleEditModeOff}
+          handleName={(v) => setName(v)}
+          handleSurname={(v) => setSurname(v)}
+          handleAddress={(v) => setAddress(v)}
+        />
       }
 
     </form >
