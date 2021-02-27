@@ -7,7 +7,7 @@ import './style.scss';
 function OrderHistory({ className, moveToOrderPage }) {
 
   const { state } = useContext(StoreContext);
-  console.log(state.orders)
+
   return (
     <div className={`order-history ${className}`}>
       <h3 className="order-history__name">

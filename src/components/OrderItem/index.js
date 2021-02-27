@@ -1,7 +1,7 @@
 import "./style.scss";
 
 function OrderItem({ order, className, handleRoute }) {
-  console.log(order)
+
   return (
     <li
       className={`order-item ${className}`}

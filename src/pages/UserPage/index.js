@@ -19,10 +19,9 @@ function UserPage({ history }) {
   const [surname, setSurname] = useState(state.user.surname || '');
   const [address, setAddress] = useState(state.user.address || null);
 
-
   const editUser = async () => {
     const user = await fetchService.editUser({ name, surname, address });
-    console.log(name, surname, address)
+
     dispatch({
       type: types.EDIT_USER,
       payload: {

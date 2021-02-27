@@ -6,6 +6,7 @@ import { StoreContext } from '../../store';
 import * as types from '../../store/actions';
 import { CustomInput } from '../../components/CustomInput';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
+import { Modal } from '../../components/Modal';
 
 import './style.scss';
 import 'react-phone-input-2/lib/style.css';
@@ -13,22 +14,25 @@ import 'react-phone-input-2/lib/style.css';
 
 function AuthPage({ history }) {
   const { state, dispatch } = useContext(StoreContext);
+  const [modal, setModal] = useState(false);
   const [data, setData] = useState({
     phone: '',
     password: '',
   });
 
   const handleLogin = async data => {
-    const dataUser = await fetchService.verifyUser(data);
-    dispatch({
-      type: types.LOGIN_USER,
-      payload: dataUser,
-    })
+    try {
+      const dataUser = await fetchService.verifyUser(data);
+      dispatch({
+        type: types.LOGIN_USER,
+        payload: dataUser,
+      })
 
-    history.push("/")
+      history.push("/")
+    } catch {
+      setModal(true)
+    }
   }
-
-  // const redirectToCategoriesPage = () => 
 
   const handleSumbit = (e) => {
     handleLogin(data);
@@ -39,10 +43,21 @@ function AuthPage({ history }) {
     if (state.token) {
       history.push("/")
     }
-  }, [history, state.token])
+
+    if (modal) {
+      setTimeout(() => {
+        setModal(false)
+      }, 4000)
+    }
+  }, [history, modal, state.token])
 
   return (
     <div className="auth">
+      {modal &&
+        <Modal
+          message="Wrong credentials!"
+        />
+      }
       <img src="./img/loader-man.png" alt="logo" className="auth__logo" />
       <form onSubmit={(e) => handleSumbit(e)} className="auth__form">
         <PhoneInput
