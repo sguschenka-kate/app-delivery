@@ -3,6 +3,7 @@ import { StoreContext } from '../../store';
 import { ProductItem } from '../../components/ProductItem';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
 import { ButtonIcon } from '../../components/ButtonIcon';
+import { fetchService } from '../../api/fetchService';
 
 import { Link } from 'react-router-dom'
 import * as types from '../../store/actions';
@@ -30,9 +31,10 @@ function CartPage({ history }) {
     })
   }
 
-  const handleOrder = () => {
+  const handleOrder = async () => {
+    await fetchService.makeOrder(state.cart, state.amount);
     dispatch({
-      type: types.CLEAR_CART
+      type: types.CLEAR_CART,
     })
   }
 

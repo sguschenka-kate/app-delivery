@@ -11,8 +11,9 @@ import { ProductsPage } from './pages/ProductsPage';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { AuthPage } from './pages/AutPage';
-import { OrderPage } from './pages/OrderPage';
+import { OrderFinalPage } from './pages/OrderFinalPage';
 import { UserPage } from './pages/UserPage';
+import { OrderPage } from './pages/OrderPage';
 import * as types from './store/actions';
 
 
@@ -45,8 +46,9 @@ function App() {
             <ProtectedRoute path="/products" component={ProductsPage} />
             <ProtectedRoute path="/product/:id" component={ProductPage} />
             <ProtectedRoute path="/cart" component={CartPage} />
-            <ProtectedRoute path="/order" component={OrderPage} />
+            <ProtectedRoute path="/order" component={OrderFinalPage} />
             <ProtectedRoute path="/user" component={UserPage} />
+            <ProtectedRoute path="/orders/:id" component={OrderPage} />
           </Layout>
         </Switch>
       </Router>

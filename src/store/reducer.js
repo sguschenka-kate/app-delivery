@@ -13,7 +13,6 @@ function productsReducer(state, action) {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', JSON.stringify(token));
 
-
       return {
         ...state,
         user,
@@ -22,9 +21,7 @@ function productsReducer(state, action) {
     }
 
     case types.EDIT_USER: {
-      const user = {
-        ...payload
-      }
+      const user = payload.user;
 
       localStorage.setItem('user', JSON.stringify(user));
 
@@ -37,6 +34,7 @@ function productsReducer(state, action) {
     case types.LOGOUT_USER: {
       const user = {};
       const token = null;
+      const orders = [];
 
       localStorage.setItem('user', JSON.stringify({}));
       localStorage.setItem('token', JSON.stringify(null));
@@ -45,7 +43,8 @@ function productsReducer(state, action) {
       return {
         ...state,
         user,
-        token
+        token,
+        orders
       }
     }
 
@@ -66,6 +65,15 @@ function productsReducer(state, action) {
       return {
         ...state,
         products
+      }
+    }
+
+    case types.FETCH_ORDERS: {
+      const orders = payload;
+
+      return {
+        ...state,
+        orders
       }
     }
 
@@ -120,7 +128,7 @@ function productsReducer(state, action) {
         target.totalAmount = totalAmount;
       }
 
-      amount = Object.values(cart).reduce((acc, current) => acc + +(current.totalAmount).toFixed(2), 0);
+      amount = Object.values(cart).reduce((acc, current) => acc + current.totalAmount, 0);
 
       localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -166,7 +174,7 @@ function productsReducer(state, action) {
       const token = JSON.parse(localStorage.getItem('token'));
       const user = JSON.parse(localStorage.getItem('user'));
       const data = localStorage.getItem('cart');
-      let amount = +JSON.parse(localStorage.getItem('amount'));
+      let amount = (+JSON.parse(localStorage.getItem('amount'))).toFixed(2);
 
       if (!data) {
         amount = 0;

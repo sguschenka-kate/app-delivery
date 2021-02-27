@@ -1,7 +1,9 @@
-.order__status {
-  min-height: 100px;
-  width: 350px;
+.order__info {
+  margin-top: 25px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+}
+
+.order__colored {
+  color: var(--blue);
 }

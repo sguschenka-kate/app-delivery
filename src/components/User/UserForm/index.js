@@ -9,7 +9,6 @@ function UserForm({ handleEditModeOff, handleName, handleSurname, handleAddress 
   const { state } = useContext(StoreContext);
 
   const handleChanges = (e) => {
-    console.log(e);
     handleEditModeOff(e);
     e.preventDefault();
   }

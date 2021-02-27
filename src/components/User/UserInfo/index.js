@@ -1,21 +1,11 @@
 import { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import { StoreContext } from '../../../store';
-import * as types from '../../../store/actions';
 import { ButtonPrimary } from '../../ButtonPrimary';
-import { ButtonSecondary } from '../../ButtonSecondary';
 
 import '../style.scss';
 
 function UserInfo({ handleEditModeOn }) {
-  const { state, dispatch } = useContext(StoreContext);
-
-  const handleLogout = (e) => {
-    dispatch({
-      type: types.LOGOUT_USER,
-    })
-    e.preventDefault()
-  }
+  const { state } = useContext(StoreContext);
 
   return (
     <div className="user__container">
@@ -36,9 +26,7 @@ function UserInfo({ handleEditModeOn }) {
         <ButtonPrimary
           onClick={handleEditModeOn}
           className="user__field-button">Edit</ButtonPrimary>
-        <ButtonSecondary
-          onClick={(e) => handleLogout(e) && <Redirect push to='/auth' />}
-          className="user__field-button">Logout</ButtonSecondary>
+
       </div>
     </div>
   )

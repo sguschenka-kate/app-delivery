@@ -6,7 +6,12 @@ const initialState = {
   amount: 0,
   location: null,
   token: null,
-  user: {},
+  user: {
+    address: null,
+    name: '',
+    surname: '',
+  },
+  orders: [],
 };
 
 export {
