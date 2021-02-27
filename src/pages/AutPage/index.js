@@ -68,6 +68,7 @@ function AuthPage({ history }) {
           placeholder="+380 50 250 5050"
           value={data.phone}
           onChange={(e) => setData({ ...data, phone: e })}
+          required
         />
         <CustomInput
           type="password"
@@ -75,6 +76,7 @@ function AuthPage({ history }) {
           value={data.password}
           onInput={(e) => setData({ ...data, password: e.target.value })}
           placeholder="*******"
+          required
         />
 
         <ButtonPrimary
