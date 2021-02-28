@@ -9,7 +9,7 @@ function OrderHistory({ className, moveToOrderPage }) {
   const { state } = useContext(StoreContext);
 
   return (
-    <div className={`order-history ${className}`}>
+    <div className={`order-history ${className || ''}`}>
       <h3 className="order-history__name">
         My Orders
         </h3>

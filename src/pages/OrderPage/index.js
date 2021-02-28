@@ -34,10 +34,10 @@ function OrderPage({ match, history }) {
             />
           )}
           <div className="order__info">
-            <div className="order-item__amount">
+            <div className="order__amount">
               <span className="order__colored">Total amount: </span>{currentOrder.amount} грн.
             </div>
-            <div className="order-item__amount">
+            <div className="order__date">
               <span className="order__colored">Created: </span>{currentOrder.created_at}
             </div>
           </div>

@@ -1,7 +1,17 @@
+@import '../../assets/scss/mixins';
+
 .order__info {
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @include make-font(15, 20);
+}
+
+.order__date {
+  @include small {
+    margin-top: 15px;
+  }
 }
 
 .order__colored {

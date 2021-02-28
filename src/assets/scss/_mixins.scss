@@ -1,3 +1,25 @@
+$small-size: 380px;
+$medium-size: 485px;
+$optimal-size: 770px;
+
+@mixin small {
+  @media screen and (max-width: $small-size) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media screen and (max-width: $medium-size) {
+    @content;
+  }
+}
+
+@mixin optimal {
+  @media screen and (max-width: $optimal-size) {
+    @content;
+  }
+}
+
 @mixin make-font ($font-size, $line-height) {
   font-size: $font-size + px;
   line-height: $line-height / $font-size;

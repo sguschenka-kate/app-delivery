@@ -4,6 +4,12 @@
   height: var(--vh);
 }
 
+.cart__message {
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .cart__list {
   display: flex;
   flex-direction: column;

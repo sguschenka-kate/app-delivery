@@ -1,18 +1,20 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useContext } from 'react';
 import { Map } from '../../components/Map';
+import { StoreContext } from '../../store';
 
 import './style.scss';
 
 function OrderFinalPage() {
 
+  const { state } = useContext(StoreContext);
   const [marker, setMarker] = useState([]);
 
   const statusMessages = useMemo(() => [
     'Your order is accepted...',
     'Your order is being prepared...',
     'The courier is on the way...',
-    'The order is delivered. Bon appetit! 💛'
-  ], []);
+    `The order is delivered to the address "${state.user.address}". Bon appetit! 💛`
+  ], [state.user.address]);
 
   const [isShown, setShown] = useState(statusMessages[0]);
 
@@ -37,8 +39,8 @@ function OrderFinalPage() {
   return (
     <div className="order-final">
       <div className="order-final__status">
-
-        {isShown}
+        <p>Dear, {state.user.name}!</p>
+        <p className="order-final__text">{isShown}</p>
       </div>
       <Map marker={marker} />
     </div >

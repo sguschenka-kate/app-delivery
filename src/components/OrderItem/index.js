@@ -4,7 +4,7 @@ function OrderItem({ order, className, handleRoute }) {
 
   return (
     <li
-      className={`order-item ${className}`}
+      className={`order-item ${className || ''}`}
       onClick={() => handleRoute(`/orders/${order.id}`)}
     >
       <h3 className="order-item__order-id">

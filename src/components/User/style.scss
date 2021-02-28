@@ -1,3 +1,5 @@
+@import '../../assets/scss/mixins';
+
 .user__container {
   max-width: 300px;
   margin: 0 auto;
@@ -28,8 +30,8 @@
 }
 
 .user__field-label {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  width: 80px;
 }
 
 .user__field-input {
@@ -43,8 +45,5 @@
 }
 
 .user__actions {
-  display: flex;
-  justify-content: center;
-  gap: 0 20px;
   margin-top: 10px;
 }

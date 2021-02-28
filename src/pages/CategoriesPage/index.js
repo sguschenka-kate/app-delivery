@@ -75,6 +75,7 @@ function CategoriesPage({ history }) {
                   <Link
                     to={`/categories/${category.id}`}
                     key={category.id}
+                    className="categories__item"
                   >
                     <Category
                       category={category}

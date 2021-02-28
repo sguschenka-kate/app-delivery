@@ -28,7 +28,7 @@ function Map(marker, className) {
   if (!isLoaded) return 'Loading maps';
 
   return (
-    <div className={`map__container ${className}`}>
+    <div className={`map__container ${className || ''}`}>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}

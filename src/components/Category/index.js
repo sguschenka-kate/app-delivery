@@ -7,7 +7,7 @@ function Category({ category }) {
   const item = makeEndForItem(category.product_count);
 
   return (
-    <li className="category">
+    <li className={`category`}>
       <div className="category__img-wrapper">
 
         <img src={category.img} alt={category.name} className="category__img" />

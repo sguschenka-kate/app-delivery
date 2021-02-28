@@ -6,7 +6,7 @@ function CustomInput({ placeholder, className, ariaLabel, type, value, ...props 
     <input
       type={type}
       placeholder={placeholder}
-      className={`input ${className}`}
+      className={`input ${className || ''}`}
       aria-label={ariaLabel}
       value={value}
       {...props}

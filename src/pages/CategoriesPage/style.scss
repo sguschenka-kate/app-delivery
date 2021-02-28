@@ -25,11 +25,22 @@
    flex-wrap: wrap;
    gap: 10px 30px;
    margin-top: 8px;
+
+   @include optimal {
+    gap: 0;
+    margin: -5px -15px;
   }
-  
+}
+
+.categories__item {
+  @include optimal {
+    margin: 5px 15px;
+  }
+}
+
 .category__img {
-max-width: 150px;
-max-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .categories__all-products {

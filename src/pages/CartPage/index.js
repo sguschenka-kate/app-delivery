@@ -1,16 +1,17 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StoreContext } from '../../store';
 import { ProductItem } from '../../components/ProductItem';
 import { ButtonPrimary } from '../../components/ButtonPrimary';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { fetchService } from '../../api/fetchService';
+import { Modal } from '../../components/Modal';
 
-import { Link } from 'react-router-dom'
 import * as types from '../../store/actions';
 import './style.scss';
 
 function CartPage({ history }) {
   const { state, dispatch } = useContext(StoreContext);
+  const [modal, showModal] = useState(false);
 
   const handleDelete = (id) => {
     dispatch({
@@ -31,11 +32,17 @@ function CartPage({ history }) {
     })
   }
 
-  const handleOrder = async () => {
+  const handleOrder = async (e) => {
+    if (state.user.name === null || state.user.surname === null || state.user.address === null) {
+      showModal(true)
+      return
+    }
     await fetchService.makeOrder(state.cart, state.amount);
     dispatch({
       type: types.CLEAR_CART,
     })
+    history.push('/order');
+    e.preventDefault()
   }
 
   useEffect(() => {
@@ -45,17 +52,19 @@ function CartPage({ history }) {
     dispatch({
       type: types.SYNC_FROM_LOCALSTORAGE,
     })
-  }, [dispatch])
+    setTimeout(() => {
+      showModal(false)
+    }, 4000)
+  }, [dispatch, modal])
 
   const moveToProductPage = path => history.push(path)
-
-  // const moveToOrderPage = path => history.push(path);
 
   return (
     <div className="cart">
       {state.cart !== null &&
         Object.keys(state.cart).length > 0 ?
         <>
+          {modal && <Modal className="cart__message" message="You must fill your profile!" />}
           <ul className="cart__list">
             {Object.values(state.cart).map(product =>
               <ProductItem
@@ -90,13 +99,13 @@ function CartPage({ history }) {
               <span className="cart__info--amount"> &#36; {state.amount}</span>
             </div>
 
-            <Link
-              to='/order'
+            <ButtonPrimary
+              type="button"
               className="btn-primary cart__button--order"
-              onClick={handleOrder}
+              onClick={(e) => handleOrder(e)}
             >
               Make order
-            </Link>
+            </ButtonPrimary>
           </div>
         </> :
         <p>here will be rendered the products</p>

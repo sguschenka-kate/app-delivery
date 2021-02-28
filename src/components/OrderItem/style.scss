@@ -17,6 +17,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+
+  @include optimal {
+    margin-top: 3px;
+  }
 }
 
 .order-item__colored {
@@ -31,4 +36,17 @@
 .order-item__amount {
   font-weight: 400;
   @include make-font(16, 20);
+
+  @include optimal {
+    @include make-font(14, 20);
+  }
+}
+
+.order-item__date {
+  font-weight: 400;
+  @include make-font(16, 20);
+
+  @include optimal {
+    @include make-font(14, 20);
+  }
 }

@@ -12,7 +12,7 @@ function ProductItem({ product, children, className, handleRoute }) {
 
   return (
     <li
-      className={`product-item ${className}`}
+      className={`product-item ${className || ''}`}
       onClick={handleClick}
     >
       <div className="product-item__image-container">
